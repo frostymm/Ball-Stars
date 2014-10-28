@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{124AD0B3-583C-C3DB-524D-87CFAA406863}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Editor\Nextpeer\PostProcessBuildPlayer_NP.cs" />
+     <None Include="Assets\Plugins\Android\Nextpeer\lint.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__notification_rank_list_current_user_avatar.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_tournament_loading_random.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__rank_solo.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__replacement_thumbnail_background.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_popup_action_item_button.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\menu\np__main_menu.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_confirm_alert.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_changeavatar.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_tournament_results_friends_peer.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_results_friends_archive_match_button_unselected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_shrink_from_bottomleft_to_topright.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__slide_out_down.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_loading_friends_online_presence.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__styles.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-v14\np__styles.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__home_current_matches_button_unselected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__dummy_action_bar_drop_shadow_background.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_tournament_loading_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_edittext.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_invite_fb_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_try_play_with_fb_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout-large\np__fragment_home.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__integers.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_tournament_results_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_shrink_from_top.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_grow_from_bottomright_to_topleft.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__dimens.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_button_negative_unselected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_home.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_tournament_loading_friends_peer.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__tags.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_current_matches_past.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_tournament_selection.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__slide_out_right.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_grow_from_top.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-large\np__dimens.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__widget_dummy_action_bar.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_changename.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_invite_all_fb_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\build.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_facebook_button_unselected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_pump_bottom.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_loading_friends_away_presence.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout-large\np__fragment_tournament_results_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__invite_fb_friends_button_add_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__notification_rank_solo_badge.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_grow_from_bottom.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_disappear.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_results_friends_archive_match_button_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__notification_slide_in_up.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_question_alert.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__widget_dummy_action_bar_drop_shadow.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_button_positive_unselected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_shrink_from_bottomright_to_topleft.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__home_server_url_button.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__slide_in_left.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_tournament_results_random_peer.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__popup_vertical.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_button_negative_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__badge_circle.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__slide_in_right.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__home_current_matches_button_selected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__dialog_change_avatar_item_selected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_results_friends_time_left_box.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__slide_out_left.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_rail.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_moreoverflow.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__notification_slide_in_down.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_results_replay_bar_button_replay_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_facebook_button_selected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_shrink_from_topleft_to_bottomright.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_changeavatar_grid_adapter_item.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_pump_top.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__invite_fb_friends_button_invited_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_current_matches_on_going.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__colors.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__action_item_vertical.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_tournament_loading_random_peer.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__notification_background.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_report_to_support_alert.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__strings.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_invite_active_fb_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-land\np__dimens.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__dialog_powered_by.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__rank_tile_horizontal.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_button_positive_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__facebook_login_activity_layout.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-large\np__strings.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__rank_tile_vertical.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_facebook_login.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values\np__themes.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_facebook_button_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_shrink_from_topright_to_bottomleft.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__slide_in_up.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_tournament_results_random.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_grow_from_topright_to_bottomleft.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__layout_listitem_tournament_selection.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_button_positive_selected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__widget_button_negative_selected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout-land\np__fragment_tournament_results_friends.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__activity_main.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-v14\np__themes.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_results_peer_score.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_grow_from_bottomleft_to_topright.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-land\np__strings.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__fade_in.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_current_matches.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\layout\np__fragment_loading_indicator.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-v11\np__themes.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-v11\np__styles.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__tournament_results_friends_archive_match_button_selected.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\proguard-project.txt" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-land\np__styles.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__home_current_matches_button_selector.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_grow_from_topleft_to_bottomright.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\anim\np__widget_popup_shrink_from_bottom.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\values-large\np__styles.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__notification_rank_solo_avatar.xml" />
+     <None Include="Assets\Plugins\Android\Nextpeer\res\drawable\np__notification_rank_list_badge.xml" />
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{21DE563C-2039-A04A-154E-236A10640D52}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-vs.csproj">
+      <Project>{8DB6E727-756A-62C0-3704-AF171E5CFFA9}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
