@@ -44,7 +44,6 @@ public class MainMenuScript : MonoBehaviour
 
 			GUILayout.BeginArea(new Rect (Screen.width * 0.05f, Screen.height * 0.05f, Screen.width * 0.9f, Screen.height * 0.9f));
 
-			Debug.Log("Length: " + MasterServer.PollHostList().Length);
 			if(NetworkManager.Instance().GetHostList().Length != 0)
 			{
 				scrollViewVector = GUILayout.BeginScrollView(scrollViewVector);
@@ -85,7 +84,7 @@ public class MainMenuScript : MonoBehaviour
 				currentMenu = "Multi";
 			}
 
-			foreach(Player player in NetworkManager.Instance().GetPlayerList())
+			foreach(Player player in NetworkManager.Instance().GetNetPlayerList())
 			{
 				GUILayout.BeginHorizontal();
 				GUILayout.Label(player.Name, GUILayout.Width(250));

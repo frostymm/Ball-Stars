@@ -21,19 +21,16 @@ public class NetworkManager
 
 	public void OnApplicationQuit()
 	{
-		Network.Disconnect();
-		MasterServer.UnregisterHost();
+		if(Network.isServer || Network.isClient)
+		{
+			LeaveRoom();
+			MasterServer.UnregisterHost();
+		}
 	}
 
 	private NetworkView m_NetView;
-	public NetworkView GetNetView()
-	{
-		return m_NetView;
-	}
-	public void SetNetView(NetworkView NetView)
-	{
-		m_NetView = NetView;
-	}
+	public NetworkView GetNetView(){ return m_NetView; }
+	public void SetNetView(NetworkView NetView){ m_NetView = NetView; }
 
 	/*public void StartServer()
 	{
@@ -83,21 +80,44 @@ public class NetworkManager
 
 	public void LeaveRoom()
 	{
+		GetNetView().RPC("RemovePlayer", RPCMode.All, GetMyPlayer().IP, GetMyPlayer().Name);
 		Network.Disconnect();
 	}
 
-	public Player[] GetPlayerList()
+	List<Player> m_NetworkPlayers = new List<Player>();
+	public List<Player> GetNetPlayerList()
 	{
-		List<Player> players = new List<Player>();
+		Debug.Log("GetNetPlayer Length: " + m_NetworkPlayers.Count);
 
-		players.Add(GetMyPlayer()); //Add client player to list
+		return m_NetworkPlayers;
+	}
 
-		foreach(NetworkPlayer p in Network.connections)
+	public void AddPlayer(string ip, string name)
+	{
+		bool playerExists = false;
+		foreach(Player p in m_NetworkPlayers)
 		{
-			players.Add(new Player(p.ipAddress));
+			if(p.IP == ip && p.Name == name)
+			{
+				playerExists = true;
+			}
 		}
 
-		return players.ToArray();
+		if(!playerExists)
+		{
+			m_NetworkPlayers.Add(new Player(ip, name));
+		}
+	}
+
+	public void RemovePlayer(string ip, string name)
+	{
+		for(int i = m_NetworkPlayers.Count - 1; i >= 0; i--)
+		{
+			if(m_NetworkPlayers[i].IP == ip && m_NetworkPlayers[i].Name == name)
+			{
+				m_NetworkPlayers.RemoveAt(i);
+			}
+		}
 	}
 
 	private Player m_Player;
@@ -105,10 +125,10 @@ public class NetworkManager
 	{
 		if (m_Player == null) 
 		{
-			m_Player = new Player("Poonigga");
+			m_Player = new Player(Network.player.ipAddress, "Player");
 		}
 		
-		return m_Player; 
+		return m_Player;
 	}
 
 	public void StartGame()
@@ -123,12 +143,32 @@ public class NetworkManager
 
 	public void OnFailedToConnect()
 	{
-		Application.LoadLevel("MainMenu");
+		//Application.LoadLevel("MainMenu");
 	}
 
 	public void OnDisconnectedFromServer()
 	{
-		Application.LoadLevel("MainMenu");
+		Debug.Log("Something disconnected from server");
+		m_NetworkPlayers.Clear(); //Clear List of players
+		//Application.LoadLevel("MainMenu");
+	}
+
+	public void OnServerInitialized()
+	{
+		AddPlayer(Network.player.ipAddress, GetMyPlayer().Name);
+	}
+
+	public void OnConnectedToServer()
+	{
+		GetNetView().RPC("AddPlayer", RPCMode.All, Network.player.ipAddress, GetMyPlayer().Name);
+	}
+
+	public void OnPlayerConnected()
+	{
+		foreach(Player p in m_NetworkPlayers)
+		{
+			GetNetView().RPC("AddPlayer", RPCMode.All, p.IP, p.Name);
+		}
 	}
 
 }
@@ -136,8 +176,10 @@ public class NetworkManager
 public class Player
 {
 	public string Name = "Poop";
-	public Player(string name)
+	public string IP = "";
+	public Player(string ip, string name)
 	{
+		IP = ip;
 		Name = name;
 	}
 
