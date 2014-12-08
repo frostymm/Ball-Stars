@@ -6,6 +6,7 @@ public class NetworkManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad(this);
 		NetworkManager.Instance().SetNetView((NetworkView)GetComponent<NetworkView>());
 	}
 	

@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\NetworkManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Scripts\PlayerEntity.cs">
     <Files>
-      <File FileName="Assets\Code\NetworkManager.cs" Line="27" Column="4" />
-      <File FileName="Assets\Code\Scripts\NetworkManagerScript.cs" Line="39" Column="49" />
-      <File FileName="Assets\Code\Scripts\MainMenuScript.cs" Line="90" Column="1" />
-      <File FileName="Assets\Code\GameManager.cs" Line="21" Column="31" />
+      <File FileName="Assets\Code\GameManager.cs" Line="121" Column="42" />
+      <File FileName="Assets\Code\Scripts\PlayerEntity.cs" Line="85" Column="19" />
+      <File FileName="Assets\Code\BaseEntity.cs" Line="72" Column="51" />
+      <File FileName="Assets\Code\Scripts\LevelManager.cs" Line="8" Column="1" />
+      <File FileName="c:\Users\Frosty\Documents\!Unity Projects\Ball-Stars\Assets\Code\Scripts\MainMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Scripts\HUDScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Scripts\GameManagerScript.cs" Line="13" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

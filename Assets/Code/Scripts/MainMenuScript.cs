@@ -1,11 +1,74 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class MainMenuScript : MonoBehaviour 
+public class MainMenuScript : MonoBehaviour
 {
+	public GameObject OptionsPanel;
+	public GameObject MainPanel;
+
+	public void SinglePlayer()
+	{
+		GameManager.Instance().LoadRace("GreenHillZoneBasic");
+	}
+
+	public void SetTexturePath(string textPath)
+	{
+		GameManager.Instance().SetTexturePath(textPath);
+	}
+
+	public void LoadSave()
+	{
+		GameManager.Instance().Load();
+		LoadOptions();
+	}
+
+	public void Save()
+	{
+		GameManager.Instance().Save();
+	}
+
+	public void CloseMenus()
+	{
+		if(OptionsPanel.activeSelf)
+			OptionsPanel.SetActive(false);
+		if(MainPanel.activeSelf)
+			MainPanel.SetActive(false);
+	}
+
+	public void LoadMain()
+	{
+		CloseMenus();
+
+		if(!MainPanel.activeSelf)
+			MainPanel.SetActive(true);
+	}
+
+	public void LoadOptions()
+	{
+		CloseMenus();
+
+		if(!OptionsPanel.activeSelf)
+			OptionsPanel.SetActive(true);
+
+		InitializeOptions();
+	}
+
+	public void LoadImage()
+	{
+		GameManager.Instance().LoadTexture();
+		InitializeOptions();
+	}
+
+	public RawImage PreviewImage;
+	public void InitializeOptions()
+	{
+		PreviewImage.texture = GameManager.Instance().GetLoadedTexture();
+	}
+
 	string currentMenu = "Main";
 	Vector2 scrollViewVector = Vector2.zero;
-	void OnGUI()
+	/*void OnGUI()
 	{
 		// Main Menu
 		if (currentMenu == "Main")
@@ -15,7 +78,7 @@ public class MainMenuScript : MonoBehaviour
 			
 			if(GUI.Button(new Rect((Screen.width / 2) - 50, (Screen.height / 4), 100, 50), "Single Player"))
 			{		
-				//Application.LoadLevel("TestScene");
+				GameManager.Instance().LoadRace("GreenHillZoneBasic");
 			}
 			if(GUI.Button(new Rect((Screen.width / 2) - 50, (Screen.height / 4) + 60, 100, 50), "Multi-Player"))
 			{				
@@ -23,7 +86,7 @@ public class MainMenuScript : MonoBehaviour
 			}
 			if(GUI.Button(new Rect((Screen.width / 2) - 50, (Screen.height / 4) + 120, 100, 50), "Options"))
 			{				
-
+				currentMenu = "Options";
 			}
 		}
 		// Multiplayer ServerList Menu
@@ -106,7 +169,37 @@ public class MainMenuScript : MonoBehaviour
 			GUILayout.EndArea();
 
 		}
-	}
+		//In options menu
+		else if(currentMenu == "Options")
+		{
+			if(GUI.Button(new Rect(0,0, 100,100), "Load"))
+				GameManager.Instance().Load();
+
+			if(GUI.Button(new Rect(0,100, 100,100), "Save"))
+				GameManager.Instance().Save();
+
+			GUILayout.BeginArea(new Rect((Screen.width / 2) - Screen.width * 0.4f, Screen.height / 8 - 20, Screen.width * 0.8f, Screen.height * 0.8f));
+			GUI.Box(new Rect(0,0, Screen.width * 0.8f, Screen.height * 0.8f), "Options");
+
+			GUILayout.BeginArea(new Rect(0, 30, Screen.width * 0.8f, Screen.height * 0.7f));
+
+			GUILayout.Label ("Player Image to Load");
+			GUILayout.BeginHorizontal();
+			GameManager.Instance().SetTexturePath(GUILayout.TextField(GameManager.Instance().GetTexturePath(), GUILayout.Width(300)));
+			//GUILayout.Button("Browse...");
+			GUILayout.EndHorizontal();
+
+			if(GUILayout.Button("Load"))
+			{
+				GameManager.Instance().LoadTexture();
+			}
+
+			GUILayout.Box(GameManager.Instance().GetLoadedTexture());
+
+			GUILayout.EndArea();
+			GUILayout.EndArea();
+		}
+	}*/
 
 	// Use this for initialization
 	void Start () 
