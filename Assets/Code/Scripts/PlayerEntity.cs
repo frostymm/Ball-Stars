@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class PlayerEntity : BaseEntity {
@@ -14,79 +16,40 @@ public class PlayerEntity : BaseEntity {
 	{
 		Transform Cam = m_Camera.transform;
 		Vector3 Origin = m_Camera.transform.position;
-		float Distance = 8f;
-		float CheckingDistance = 6f;
 		Vector3 LookAtOffset = new Vector3(0, 1.5f, 0);
 
-		m_CamFollowOffset = (-m_CamParent.forward*(rigidbody.velocity.magnitude/15));
-		/*
-		Vector3 DirectionToDefaultPoint = (m_CamParent.position + m_CamFollowOffset) - Cam.position;
-		if(DirectionToDefaultPoint.magnitude <= 2.7)
-			DirectionToDefaultPoint = Vector3.zero;
-		else
-			DirectionToDefaultPoint = DirectionToDefaultPoint / DirectionToDefaultPoint.magnitude;
-
-		Vector3 Translation = Vector3.zero;
-		Vector3 Direction = Vector3.zero;
-		Direction = m_CamParent.forward;
-		Debug.DrawLine(Origin, Origin + (Direction * Distance), Color.blue);
-		if(Physics.Linecast(Origin, Origin + (Direction * Distance), out m_CamHit[(int)CamHits.forward]))
-		{
-			if(m_CamHit[(int)CamHits.forward].distance < CheckingDistance)
-				Translation += -Direction;
-			DirectionToDefaultPoint.z = 0;
-			//Debug.Log("Hitting Forward Line");
-		}
-		Direction = -m_CamParent.forward;
-		Debug.DrawLine(Origin, Origin + (Direction * Distance), Color.blue);
-		if(Physics.Linecast(Origin, Origin + (Direction * Distance), out m_CamHit[(int)CamHits.back]))
-		{
-			if(m_CamHit[(int)CamHits.back].distance < CheckingDistance)
-				Translation += -Direction;
-			DirectionToDefaultPoint.z = 0;
-			//Debug.Log("Hitting Backward Line");
-		}
-		Direction = m_CamParent.up;
-		Debug.DrawLine(Origin, Origin + (Direction * Distance), Color.blue);
-		if(Physics.Linecast(Origin, Origin + (Direction * Distance), out m_CamHit[(int)CamHits.up]))
-		{
-			if(m_CamHit[(int)CamHits.up].distance < CheckingDistance)
-				Translation += -Direction;
-			DirectionToDefaultPoint.y = 0;
-			//Debug.Log("Hitting Up Line");
-		}
-		Direction = -m_CamParent.up;
-		Debug.DrawLine(Origin, Origin + (Direction * Distance), Color.blue);
-		if(Physics.Linecast(Origin, Origin + (Direction * Distance), out m_CamHit[(int)CamHits.down]))
-		{
-			if(m_CamHit[(int)CamHits.down].distance < CheckingDistance)
-				Translation += -Direction;
-			DirectionToDefaultPoint.y = 0;
-			//Debug.Log("Hitting Down Line");
-		}
-
-		DirectionToDefaultPoint.x = 0;
-		Translation.x = 0;
-		*/
-
-		//Cam.Translate((Translation + (DirectionToDefaultPoint*1f)) * 5f * Time.deltaTime);
+		m_CamFollowOffset = (-m_CamParent.forward*(GetVelocity().magnitude/15));
 
 		float terrainHeight = Terrain.activeTerrain.SampleHeight(Cam.position) + Terrain.activeTerrain.GetPosition().y;
 		float TerrainOffset = 5f;
-		if(m_CamParent.position.y > terrainHeight && ((Mathf.Abs(terrainHeight - ball.transform.position.y) > 10f) || !wheel.isGrounded))
+		if(m_CamParent.position.y > terrainHeight && ((Mathf.Abs(terrainHeight - GetPosition().y) > 10f) || !isGrounded))
 			terrainHeight = m_CamParent.position.y;
 		else
 			terrainHeight += TerrainOffset;
 
-		float camSpeed = 0.1f;
-		if(Cam.position.y > terrainHeight)
-			camSpeed = 5f;
-		else
-			camSpeed = 15f;
+		float camHSpeed = 150f;
+		float camVSpeed = 0.1f;
 
+		float dist = Mathf.Abs(Cam.position.y - m_CamParent.position.y);
+		camVSpeed = dist * 5;
 
-		Cam.position = Vector3.MoveTowards(Cam.position, new Vector3(Cam.position.x, terrainHeight, Cam.position.z), camSpeed * Time.deltaTime);
+		dist = Vector3.Distance(new Vector3(Cam.position.x, 0, Cam.position.z), 
+		                        new Vector3(m_CamParent.position.x, 0, m_CamParent.position.z));
+		camHSpeed = dist * 8;
 
+		Vector3 newVPos = Vector3.MoveTowards(Cam.position, new Vector3(Cam.position.x, terrainHeight, Cam.position.z), camVSpeed * Time.deltaTime);
+		Vector3 newHPos = Vector3.MoveTowards(Cam.position, new Vector3(m_CamParent.position.x, Cam.position.y, m_CamParent.position.z), camHSpeed * Time.deltaTime);
+		Vector3 newPos = new Vector3(newHPos.x, newVPos.y, newHPos.z);
+
+		RaycastHit rayHit = new RaycastHit();
+		Debug.DrawLine(Cam.position, Cam.position + (new Vector3(newPos.x, Cam.position.y, newPos.z) - Cam.position)*15);
+		if(Physics.Linecast(Cam.position, Cam.position + (new Vector3(newPos.x, Cam.position.y, newPos.z) - Cam.position)*15, out rayHit))
+		{
+			Debug.Log("newPos requires going through terrain");
+			newPos.y = Mathf.MoveTowards(newPos.y, rayHit.point.y + 100f, 60*Time.deltaTime);
+		}
+
+		Cam.position = newPos;
 		Cam.LookAt(transform.position + LookAtOffset);
 	}
 	public enum CamHits
@@ -101,12 +64,23 @@ public class PlayerEntity : BaseEntity {
 
 	public override void SetCurrentWayPoint(int waypoint)
 	{
-		LevelManager.Instance().GetWayPoint(GetCurrentWayPoint()).renderer.material = 
-			Resources.Load<Material>("SanicBall/Materials/Environment/checkpointHidden");
-		LevelManager.Instance().GetWayPoint(waypoint).renderer.material = 
-			Resources.Load<Material>("SanicBall/Materials/Environment/checkpointActive");
+		LevelManager.Instance().GetWayPoint(GetCurrentWayPoint()).isCurrentWaypoint = false;
+		LevelManager.Instance().GetWayPoint(waypoint).isCurrentWaypoint = true;
 
 		base.SetCurrentWayPoint(waypoint);
+	}
+
+
+	//Doesn't work (Trying to check if pushing button instead of tapping to jump, jumps regardless right now)
+	public bool GetIsTouchingButton()
+	{
+		//EventSystem eventSystem = EventSystem.current;
+
+		//if(eventSystem && eventSystem.IsPointerOverGameObject())
+			//if(eventSystem. == "Button")
+				//Debug.Log("TouchingButton");
+
+		return false;
 	}
 
 	public override void Awake()
@@ -116,18 +90,32 @@ public class PlayerEntity : BaseEntity {
 	
 	public override void Start () {
 		base.Start();
+
+		m_Camera.transform.SetParent(null);
 	}
 
+	private float turnSpeed = 2.4f;
 	public override void FixedUpdate () {
 		base.FixedUpdate();
 
-		float moveH;
-		moveH = (Input.GetAxis ("Horizontal") + Input.acceleration.x) * 3f;
-		 
-		//float moveV = Input.GetAxis ("Vertical");
+		if(GameManager.Instance().IsRaceStarted)
+		{
+			float moveH = (Input.GetAxis ("Horizontal") + Input.acceleration.x) * turnSpeed;
 
-		transform.Rotate(0.0f,moveH,0.0f);
+			if(isGrounded && (Input.GetButton("Jump") 
+			                  || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) && !GetIsTouchingButton()))
+			{
+				Jump();
+			}
+
+			transform.Rotate(0.0f,moveH,0.0f);
+		}
 
 		CameraUpdate();
+	}
+
+	public override void Update()
+	{
+		base.Update ();
 	}
 }

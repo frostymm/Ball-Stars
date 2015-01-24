@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
+	public float[] Scores;
 
 	// Use this for initialization
 	void Start () {
@@ -9,8 +10,14 @@ public class GameManagerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		GameManager.Instance().Update();
+	}
+
+	void FixedUpdate()
+	{
+		Scores = GameManager.Instance().GetScores();
 	}
 
 	void OnApplicationQuit()

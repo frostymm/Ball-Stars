@@ -12,13 +12,11 @@ public class CameraController : MonoBehaviour {
 		float moveH = Input.GetAxis ("Horizontal");
 		transform.LookAt (player.transform);
 		Vector3 movement = new Vector3 ( 0.0f,moveH, 0.0f);
-		//transform.Rotate (movement);
 		transform.Translate (movement);
 		
 	}
 	// Update is called once per frame
 	void LateUpdate () {
-		//transform.position = player.transform.position + offset;
 		transform.rotation = player.transform.rotation;
 	}
 }

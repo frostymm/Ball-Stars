@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//----------------------------------Not used currently--------------------------
 public class NetworkManager
 {
 	public NetworkManager()
